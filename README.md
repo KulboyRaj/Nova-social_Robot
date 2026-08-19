@@ -139,6 +139,31 @@ nova-robot/
     └── angry_open_left.h               Eye artwork: angry, open (also used as the sad placeholder)
 ```
 
+
+## Local model weights (not stored in this repo)
+
+Two model files this app can use are intentionally **not** committed to
+git — they're large binaries and Nova falls back to simpler behavior if
+they're missing, so they're kept out of the repo history. Instead of
+downloading them by hand, just run:
+
+```bash
+bash scripts/download_models.sh
+```
+
+This fetches:
+- `python/models/emotion_model.h5` — a FER2013 7-emotion CNN (MIT-licensed public checkpoint). Without it, emotion detection falls back to a simple smile/neutral heuristic.
+- `qwen2.5-1.5b-instruct-q4_k_m.gguf` — the LLM weights for the local Ollama model `qwen2.5:1.5b-instruct`, from this repo's [`llm-weights-v1` release](https://github.com/KulboyRaj/Nova-social_Robot/releases/tag/llm-weights-v1), checksum-verified on download.
+
+The LLM file is raw model weights, not something Ollama can load directly
+from a path — it needs to be imported into Ollama under the exact model
+name `config.py` expects:
+
+```bash
+ollama create qwen2.5:1.5b-instruct -f Modelfile
+curl http://localhost:11434/api/chat -d '{"model":"qwen2.5:1.5b-instruct","messages":[{"role":"user","content":"hi"}],"stream":false}'
+```
+
 ## Getting started
 
 1. **Deploy to the board.** Push this project to the UNO Q using Arduino
