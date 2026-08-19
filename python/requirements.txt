@@ -1,0 +1,30 @@
+# Core
+python-dotenv==1.0.1
+requests==2.32.3
+numpy==1.26.4
+
+# Vision (face detection, per report: OpenCV Haar Cascade)
+opencv-python==4.10.0.84
+
+# Emotion CNN (per report: TensorFlow/Keras, FER2013) -- only needed if
+# you've added python/models/emotion_model.h5; the app still runs (with
+# a simpler heuristic) without this installed. Comment out on the UNO Q
+# if install size/time is a concern for your demo.
+tensorflow==2.17.0
+
+# Speech-to-text (per report: Faster-Whisper + CTranslate2, Whisper base.en)
+faster-whisper==1.0.3
+sounddevice==0.4.7
+
+# Text-to-speech (fully offline, no API key)
+pyttsx3==2.90
+
+# IoT / smart light control
+paho-mqtt==1.6.1
+
+# Music playback
+pygame==2.6.0
+spotipy==2.24.0
+
+# SOS / emergency calling
+twilio==9.3.2

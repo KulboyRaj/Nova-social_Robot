@@ -1,0 +1,27 @@
+# Arduino CLI sketch project file for the NOVA MCU firmware.
+#
+# UNO Q's microcontroller subsystem is an STM32U585 (Arm Cortex-M33) running
+# "Arduino Core for Zephyr" -- NOT the classic AVR/megaAVR core and NOT the
+# ESP32 (Xtensa) core. That is why the FQBN below is "arduino:zephyr:unoq"
+# and not "arduino:avr:uno" or "esp32:esp32:...".
+#
+# See README.md ("Architecture" section, "Why LovyanGFX isn't available")
+# for why this matters for the display library choice.
+
+profiles:
+  default:
+    fqbn: arduino:zephyr:unoq
+    platforms:
+      - platform: arduino:zephyr
+    libraries:
+      # Servo is officially supported on the arduino:zephyr core (confirmed
+      # installable via App Lab's "Add Library" search) and is used to drive
+      # the head-tracking servo motor.
+      - Servo
+
+      # SPI is part of arduino:zephyr core itself (no separate library
+      # entry needed) and is used for the two GC9A01 round-eye displays,
+      # driven with our own single-file driver (NovaEyes.h/.cpp) since
+      # LovyanGFX is not available for this core/architecture.
+
+default_profile: default

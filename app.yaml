@@ -1,0 +1,12 @@
+name: NOVA Social Robot
+description: "Human-centric social robot: vision + emotion detection, voice conversation (Whisper + Qwen2.5-1.5B-Instruct via Ollama), expressive dual GC9A01 eyes, head-tracking servo, IoT/light control, music playback and SOS calling."
+icon: 🤖
+version: "1.0.0"
+
+# No web UI is exposed by this app (voice/vision only), so no ports are needed.
+ports: []
+
+# We are not using any pre-built App Lab "Bricks" -- everything is plain
+# Python + a Bridge-connected sketch, so this project has no external
+# hardware/service dependency beyond what pip/ollama install for you.
+bricks: []
